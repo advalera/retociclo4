@@ -24,7 +24,10 @@ class App extends StatelessWidget {
        // ---------------------------------------
        // 1. Crea las rutas posibles para nuestra app
        // ---------------------------------------
-      routes: {},
+      routes: {
+        '/auth': (context) => const AuthenticationPage(),
+        '/content': (context) => const ContentPage(),
+      },
     );
   }
 }

@@ -48,6 +48,9 @@ class _State extends State<ContentPage> {
         picUrl: 'https://uifaces.co/our-content/donated/gPZwCbdS.jpg',
         tile: const Text("Red Egresados"),
         context: context,
+        onSignOff: () {
+          Get.offNamed('/auth');
+        },
         // ---------------------------------------
         // 1. Implementa el metodo onSignOff para redirigir a la ruta de autenticación
         // ---------------------------------------
