@@ -45,8 +45,8 @@ class _State extends State<ContentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        picUrl: 'https://uifaces.co/our-content/donated/gPZwCbdS.jpg',
-        tile: const Text("Red Egresados"),
+        picUrl: 'https://uifaces.co/our-content/donated/Zh_4oc5l.jpg',
+        tile: const Text("Arte en las calles"),
         context: context,
         onSignOff: () {
           Get.offNamed('/auth');
@@ -76,15 +76,15 @@ class _State extends State<ContentPage> {
             label: 'Social',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.public_outlined),
-            label: 'Verificado',
+            icon: Icon(Icons.art_track_outlined),
+            label: 'WebArte',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.place_outlined),
             label: 'Ubicación',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
+            icon: Icon(Icons.message_outlined),
             label: 'Mensajes',
           ),
         ],

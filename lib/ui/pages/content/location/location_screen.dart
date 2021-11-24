@@ -10,7 +10,7 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _State extends State<LocationScreen> {
-  final items = List<String>.generate(8, (i) => "Item $i");
+  final items = List<String>.generate(8, (i) => "Persona $i");
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _State extends State<LocationScreen> {
             itemCount: items.length,
             itemBuilder: (context, index) {
               return LocationCard(
-                title: 'John Doe',
+                title: items[index],
                 lat: 11.004556423794284,
                 long: -74.7217010498047,
                 distance: 25,

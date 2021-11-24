@@ -10,7 +10,7 @@ class UsersOffersScreen extends StatefulWidget {
 }
 
 class _State extends State<UsersOffersScreen> {
-  final items = List<String>.generate(20, (i) => "Item $i");
+  final items = List<String>.generate(20, (i) => "Oferta $i de Usuario");
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _State extends State<UsersOffersScreen> {
       itemCount: items.length,
       itemBuilder: (context, index) {
         return PostCard(
-          title: 'Ludvig Wiese',
+          title: items[index],
           content:
               'Duis non tellus sed quam luctus gravida quis sed libero. Pellentesque luctus lorem eu est varius, eu dignissim leo tincidunt. Fusce eget ante sed mi venenatis tincidunt et rutrum neque. Suspendisse laoreet sapien sed est aliquet fringilla. Fusce fringilla, ante in ultrices volutpat, mauris ',
           picUrl:

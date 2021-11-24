@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _State extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,12 @@ class _State extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "Iniciar sesión",
-              style: Theme.of(context).textTheme.headline1,
+              "Entra a tu cuenta",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.red,
+              ),
             ),
           ),
           Padding(
@@ -43,11 +48,20 @@ class _State extends State<LoginScreen> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: passwordController,
-              obscureText: true,
+              obscureText: _isObscure,
               obscuringCharacter: "*",
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Clave',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  }, 
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off
+                  )),
               ),
             ),
           ),

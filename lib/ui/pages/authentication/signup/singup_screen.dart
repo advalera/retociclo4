@@ -14,6 +14,7 @@ class _State extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +22,18 @@ class _State extends State<SignUpScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Spacer(),
-          Padding(
+          const Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "Creación de usuario",
-              style: Theme.of(context).textTheme.headline1,
+              "¡Crea tu cuenta!",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.red,
+              ),
             ),
           ),
           Padding(
@@ -36,7 +42,7 @@ class _State extends State<SignUpScreen> {
               controller: nameController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Usuario',
+                labelText: 'Escribe tu usuario aquí',
               ),
             ),
           ),
@@ -54,11 +60,20 @@ class _State extends State<SignUpScreen> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: passwordController,
-              obscureText: true,
+              obscureText: _isObscure,
               obscuringCharacter: "*",
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Clave',
+                labelText: 'Contraseña',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  }, 
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off
+                  )),
               ),
             ),
           ),
@@ -69,6 +84,9 @@ class _State extends State<SignUpScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
                     onPressed: () {
                       Get.offNamed('/content');
                     },
@@ -78,9 +96,15 @@ class _State extends State<SignUpScreen> {
               ),
             ],
           ),
+          const Text('Si ya tienes una cuenta creada, da clic en '),
           TextButton(
             onPressed: widget.onViewSwitch,
-            child: const Text("Entrar"),
+            child: const Text("Entrar",
+            style: TextStyle(fontSize: 20.0),
+            ),
+            style: TextButton.styleFrom(
+              primary: Colors.red,
+            ),
           ),
           const Spacer(),
         ],
