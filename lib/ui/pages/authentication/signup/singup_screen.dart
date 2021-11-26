@@ -4,7 +4,9 @@ import 'package:get/route_manager.dart';
 class SignUpScreen extends StatefulWidget {
   final VoidCallback onViewSwitch;
 
-  const SignUpScreen({Key? key, required this.onViewSwitch}) : super(key: key);
+  const SignUpScreen({
+    Key? key, 
+    required this.onViewSwitch}) : super(key: key);
 
   @override
   _State createState() => _State();

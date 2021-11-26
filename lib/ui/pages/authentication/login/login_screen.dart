@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class LoginScreen extends StatefulWidget {
-  final VoidCallback onViewSwitch;
+  final VoidCallback onViewSwitch, onForgotPassword;
 
-  const LoginScreen({Key? key, required this.onViewSwitch}) : super(key: key);
+  //Constructor
+  const LoginScreen({
+    Key? key, 
+  required this.onViewSwitch, 
+  required this.onForgotPassword
+  }) : super(key: key);
 
   @override
   _State createState() => _State();
@@ -84,9 +89,14 @@ class _State extends State<LoginScreen> {
               )
             ],
           ),
+          const Text('Si no tienes una cuenta, da clic aquí: '),
           TextButton(
-              onPressed: widget.onViewSwitch, child: const Text("Registrarse")),
+              onPressed: widget.onViewSwitch, 
+              child: const Text("Registrarse")),
           const Spacer(),
+          TextButton(
+            onPressed: widget.onForgotPassword, 
+            child: const Text('Olvidé mi contraseña')),
         ],
       ),
     );
