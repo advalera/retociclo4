@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:red_egresados/domain/use_cases/auth_management.dart';
+import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onViewSwitch, onForgotPassword;
@@ -18,6 +21,7 @@ class LoginScreen extends StatefulWidget {
 class _State extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final controller = Get.find<AuthController>();
   bool _isObscure = true;
 
   @override
@@ -80,8 +84,22 @@ class _State extends State<LoginScreen> {
                     // ---------------------------------------
                     // 1. Implementa el metodo onPressed para ejecutar una acción al presionar el boton 'Iniciar Sesiòn'
                     // ---------------------------------------
-                    onPressed: () {
-                      Get.offNamed('/content');
+                    onPressed: () async {
+                      var result = await AuthManagement.signIn(
+                          email: emailController.text,
+                          password: passwordController.text);
+                      controller.authenticated = result;
+                      // Validamos que el resultado sea falso, para enviarle 
+                      // Una alerta al usuario diciendo, que los datos 
+                      // Son errados, usando Get.showSnackbar
+                      if (result == false) {
+                        Get.showSnackbar(
+                          GetBar(
+                            message: "Usuario o contraseña incorrecto",
+                            duration: const Duration(seconds: 2),
+                          )
+                        );
+                      }
                     },
                     child: const Text("Login"),
                   ),

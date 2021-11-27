@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
 import 'package:red_egresados/ui/pages/content/location/location_screen.dart';
 import 'package:red_egresados/ui/pages/content/public_offers/public_offers_screen.dart';
 import 'package:red_egresados/ui/pages/content/states/states_screen.dart';
 import 'package:red_egresados/ui/pages/content/users_offers/users_offers_screen.dart';
 import 'package:red_egresados/ui/widgets/appbar.dart';
+import 'package:get/get.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class ContentPage extends StatefulWidget {
 class _State extends State<ContentPage> {
   int _selectedIndex = 0;
   Widget _content = const StatesScreen();
+  final AuthController authController = Get.find<AuthController>();
 
   // NavBar action
   void _onItemTapped(int index) {
@@ -49,11 +52,8 @@ class _State extends State<ContentPage> {
         tile: const Text("Arte en las calles"),
         context: context,
         onSignOff: () {
-          Get.offNamed('/auth');
+          authController.authenticated = false;
         },
-        // ---------------------------------------
-        // 1. Implementa el metodo onSignOff para redirigir a la ruta de autenticación
-        // ---------------------------------------
       ),
       body: SafeArea(
         child: Padding(
