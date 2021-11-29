@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
+import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
 import 'package:red_egresados/ui/pages/authentication/auth_page.dart';
 import 'package:red_egresados/ui/pages/content/content_page.dart';
 import 'package:red_egresados/ui/theme/theme.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -58,5 +61,35 @@ void _stateManagementInit() {
       // Esta navegación a las rutas se llevará a cabo inmediatamente
       // Que haya cambios en la autenticación, gracias al método reactivo
     });
+
+    // Inyectamos el controlador de conectividad
+    ConnectivityController connectivityController =
+        Get.put(ConnectivityController());
+
+    // Verificamos la conectividad, y escuchamos los cambios,
+    // Para asignar el valor a la variable observable del controlador
+    Connectivity().onConnectivityChanged.listen((connectivityStatus) {
+          log("connection changed to: $connectivityStatus");
+          connectivityController.connectivity = connectivityStatus;
+          if (connectivityStatus == ConnectivityResult.mobile) {
+            Get.showSnackbar(
+              GetBar(
+                message: "Conectado con datos móviles",
+                duration: const Duration(seconds: 2),)
+            );
+          } else if (connectivityStatus == ConnectivityResult.wifi) {
+            Get.showSnackbar(
+              GetBar(
+                message: "Conectado con WiFi",
+                duration: const Duration(seconds: 2),)
+            );
+          } else if (connectivityStatus == ConnectivityResult.none) {
+            Get.showSnackbar(
+              GetBar(
+                message: "No está conectado a Internet",
+                duration: const Duration(seconds: 2),)
+            );
+          }
+        });
   }
 }
