@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
 import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
+import 'package:red_egresados/domain/use_cases/controllers/status_controller.dart';
 import 'package:red_egresados/ui/pages/authentication/auth_page.dart';
 import 'package:red_egresados/ui/pages/content/content_page.dart';
 import 'package:red_egresados/ui/theme/theme.dart';
@@ -91,5 +92,8 @@ void _stateManagementInit() {
             );
           }
         });
+
+    // Inyectamos el controlador de estados
+    StatusController statusController = Get.put(StatusController());
   }
 }
