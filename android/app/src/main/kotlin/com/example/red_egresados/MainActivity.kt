@@ -1,4 +1,4 @@
-package com.example.red_egresados
+package com.example.retociclo4
 
 import io.flutter.embedding.android.FlutterActivity
 

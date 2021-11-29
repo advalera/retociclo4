@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
-import 'package:red_egresados/domain/use_cases/auth_management.dart';
-import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
-import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
+import 'package:retociclo4/domain/use_cases/auth_management.dart';
+import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   final VoidCallback onViewSwitch;
@@ -97,11 +97,10 @@ class _State extends State<SignUpScreen> {
                     ),
                     onPressed: () async {
                       if (connectivityController.connected) {
-                        var result = await AuthManagement.signUp(
+                        await controller.manager.signUp(
                             name: nameController.text,
                             email: emailController.text,
                             password: passwordController.text);
-                        controller.authenticated = result;
                       } else {
                         Get.showSnackbar(
                           GetBar(

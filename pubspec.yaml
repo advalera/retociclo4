@@ -1,4 +1,4 @@
-name: "red_egresados"
+name: "retociclo4"
 description: Red Egresados - MisionTIC 2022.
 
 
@@ -32,6 +32,8 @@ dependencies:
   google_fonts: ^2.1.0
   get: ^4.3.8
   connectivity_plus: ^1.0.6
+  firebase_core: ^1.7.0
+  firebase_auth: ^3.1.2
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2

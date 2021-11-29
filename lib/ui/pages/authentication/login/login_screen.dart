@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:red_egresados/domain/use_cases/auth_management.dart';
-import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
-import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
+import 'package:retociclo4/domain/use_cases/auth_management.dart';
+import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onViewSwitch, onForgotPassword;
@@ -88,7 +88,7 @@ class _State extends State<LoginScreen> {
                     // ---------------------------------------
                     onPressed: () async {
                       if (connectivityController.connected) {
-                        var result = await AuthManagement.signIn(
+                        var result = await controller.manager.signIn(
                           email: emailController.text,
                           password: passwordController.text);
                           controller.authenticated = result;

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:red_egresados/domain/models/user_status.dart';
+import 'package:retociclo4/domain/models/user_status.dart';
 
 class StatusController extends GetxController {
   RxList<UserStatus> userStatus = List<UserStatus>.from([]).obs;

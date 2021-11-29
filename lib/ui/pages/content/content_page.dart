@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
-import 'package:red_egresados/ui/pages/content/location/location_screen.dart';
-import 'package:red_egresados/ui/pages/content/public_offers/public_offers_screen.dart';
-import 'package:red_egresados/ui/pages/content/states/states_screen.dart';
-import 'package:red_egresados/ui/pages/content/users_offers/users_offers_screen.dart';
-import 'package:red_egresados/ui/widgets/appbar.dart';
+import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/ui/pages/content/location/location_screen.dart';
+import 'package:retociclo4/ui/pages/content/public_offers/public_offers_screen.dart';
+import 'package:retociclo4/ui/pages/content/states/states_screen.dart';
+import 'package:retociclo4/ui/pages/content/users_offers/users_offers_screen.dart';
+import 'package:retociclo4/ui/widgets/appbar.dart';
 import 'package:get/get.dart';
 
 class ContentPage extends StatefulWidget {

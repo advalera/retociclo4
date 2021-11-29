@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:red_egresados/data/services/work_pool.dart';
-import 'package:red_egresados/domain/models/public_job.dart';
+import 'package:retociclo4/data/services/work_pool.dart';
+import 'package:retociclo4/domain/models/public_job.dart';
 import 'widgets/offer_card.dart';
 import 'package:get/get.dart';
 

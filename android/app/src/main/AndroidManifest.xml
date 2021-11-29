@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.red_egresados">
+    package="com.example.retociclo4">
    <application
         android:label="Red Egresados MINTIC"
         android:icon="@mipmap/launcher_icon">

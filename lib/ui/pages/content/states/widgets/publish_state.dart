@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:red_egresados/domain/models/user_status.dart';
-import 'package:red_egresados/domain/use_cases/controllers/status_controller.dart';
+import 'package:retociclo4/domain/models/user_status.dart';
+import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
 
 class PublishState extends StatefulWidget {
   

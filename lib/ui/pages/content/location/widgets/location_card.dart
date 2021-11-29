@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:red_egresados/ui/widgets/card.dart';
+import 'package:retociclo4/ui/widgets/card.dart';
 
 class LocationCard extends StatelessWidget {
   final String title;
