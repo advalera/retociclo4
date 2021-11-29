@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+import 'package:red_egresados/domain/use_cases/auth_management.dart';
+import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
+import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   final VoidCallback onViewSwitch;
@@ -16,6 +20,8 @@ class _State extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final controller = Get.find<AuthController>();
+  final connectivityController = Get.find<ConnectivityController>();
   bool _isObscure = true;
 
   @override
@@ -89,8 +95,21 @@ class _State extends State<SignUpScreen> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
-                    onPressed: () {
-                      Get.offNamed('/content');
+                    onPressed: () async {
+                      if (connectivityController.connected) {
+                        var result = await AuthManagement.signUp(
+                            name: nameController.text,
+                            email: emailController.text,
+                            password: passwordController.text);
+                        controller.authenticated = result;
+                      } else {
+                        Get.showSnackbar(
+                          GetBar(
+                            message: "No estas conectado a la red.",
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
+                      }
                     },
                     child: const Text("Registrar"),
                   ),

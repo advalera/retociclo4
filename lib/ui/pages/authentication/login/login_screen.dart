@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:red_egresados/domain/use_cases/auth_management.dart';
 import 'package:red_egresados/domain/use_cases/controllers/auth_controller.dart';
+import 'package:red_egresados/domain/use_cases/controllers/conectivity_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onViewSwitch, onForgotPassword;
@@ -22,6 +23,7 @@ class _State extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final controller = Get.find<AuthController>();
+  final connectivityController = Get.find<ConnectivityController>();
   bool _isObscure = true;
 
   @override
@@ -85,19 +87,28 @@ class _State extends State<LoginScreen> {
                     // 1. Implementa el metodo onPressed para ejecutar una acción al presionar el boton 'Iniciar Sesiòn'
                     // ---------------------------------------
                     onPressed: () async {
-                      var result = await AuthManagement.signIn(
+                      if (connectivityController.connected) {
+                        var result = await AuthManagement.signIn(
                           email: emailController.text,
                           password: passwordController.text);
-                      controller.authenticated = result;
-                      // Validamos que el resultado sea falso, para enviarle 
-                      // Una alerta al usuario diciendo, que los datos 
-                      // Son errados, usando Get.showSnackbar
-                      if (result == false) {
+                          controller.authenticated = result;
+                          // Validamos que el resultado sea falso, para enviarle 
+                          // Una alerta al usuario diciendo, que los datos 
+                          // Son errados, usando Get.showSnackbar
+                          if (result == false) {
+                            Get.showSnackbar(
+                              GetBar(
+                                message: "Usuario o contraseña incorrecto",
+                                duration: const Duration(seconds: 2),
+                              )
+                            );
+                          }
+                      } else {
                         Get.showSnackbar(
                           GetBar(
-                            message: "Usuario o contraseña incorrecto",
+                            message: "No estas conectado a la red.",
                             duration: const Duration(seconds: 2),
-                          )
+                          ),
                         );
                       }
                     },
