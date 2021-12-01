@@ -1,12 +1,14 @@
 // Importamos la clase de implementación
 import 'package:retociclo4/data/repositories/auth.dart';
+import 'package:retociclo4/data/repositories/google_auth.dart';
 
 // Creamos la clase
 class AuthManagement {
   // Definimos la clase que importamos como una variable privada _auth
   Auth auth = Auth();
+  GoogleAuth googleAuth = GoogleAuth();
 
-  AuthManagement({required this.auth});
+  AuthManagement({required this.auth, required this.googleAuth});
 
   // Definimos cada uno de los métodos de la implementación
   // Y dentro de un try...catch llamamos a cada uno de los métodos
@@ -16,6 +18,14 @@ class AuthManagement {
       {required String email, required String password}) async {
     try {
       return await auth.signIn(email: email, password: password);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> signInWithGoogle() async {
+    try {
+      return await googleAuth.signInWithGoogle();
     } catch (e) {
       rethrow;
     }

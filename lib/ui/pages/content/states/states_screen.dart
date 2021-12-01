@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:retociclo4/domain/models/user_status.dart';
+import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
 import 'package:retociclo4/ui/pages/content/states/widgets/publish_state.dart';
@@ -15,15 +17,14 @@ class StatesScreen extends StatefulWidget {
 }
 
 class _State extends State<StatesScreen> {
-  final items = List<String>.generate(20, (i) => "Item $i");
-  final contents = List<String>.generate(20, (i) => "Contenido que hace referencia al Item $i");
-  late Stream<List<Map<String, dynamic>>> statusesStream;
   late ConnectivityController connectivityController;
   late StatusController statusController;
+  late AuthController authController;
 
   @override
   void initState() {
     super.initState();
+    authController = Get.find<AuthController>();
     connectivityController = Get.find<ConnectivityController>();
     statusController = Get.find<StatusController>();
   }
@@ -58,13 +59,16 @@ class _State extends State<StatesScreen> {
               itemCount: statusController.userStatus.length,
               itemBuilder: (context, index) {
                 UserStatus status = statusController.userStatus[index];
+                User user = authController.currentUser!;
                 return StateCard(
                   title: status.name,
                   content: status.message,
                   picUrl: status.picUrl,
-                  onChat: () {},
-                  onDelete: () {
-                    statusController.removeStatus(status);
+                  displayIcon: user.email! == status.email ? "delete" : "",
+                  onAction: () {
+                    if (user.email! == status.email) {
+                      statusController.removeStatus(status);
+                    }
                   },
                 );
               }, 

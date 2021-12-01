@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:retociclo4/ui/widgets/card.dart';
 
 class StateCard extends StatelessWidget {
-  final String title, content, picUrl;
-  final VoidCallback onChat, onDelete;
+  final String title, content, picUrl, displayIcon;
+  final VoidCallback onAction;
 
   // StateCard constructor
   const StateCard(
@@ -11,8 +11,8 @@ class StateCard extends StatelessWidget {
       required this.title,
       required this.content,
       required this.picUrl,
-      required this.onDelete,
-      required this.onChat})
+      required this.displayIcon,
+      required this.onAction})
       : super(key: key);
 
   // We create a Stateless widget that contais an AppCard,
@@ -41,10 +41,10 @@ class StateCard extends StatelessWidget {
       // topRightWidget widget as an IconButton
       topRightWidget: IconButton(
         icon: Icon(
-          Icons.delete,
+          displayIcon == "delete" ? Icons.delete : Icons.chat,
           color: primaryColor,
         ),
-        onPressed: onDelete,
+        onPressed: onAction,
       ),
     );
   }

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:retociclo4/domain/models/user_status.dart';
+import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
 
 class PublishState extends StatefulWidget {
@@ -15,6 +17,7 @@ class _PublishStateState extends State<PublishState> {
   late bool _buttonDisabled;
   late TextEditingController stateController;
   late StatusController statusController;
+  late AuthController authController;
 
   @override
   void initState() {
@@ -22,6 +25,7 @@ class _PublishStateState extends State<PublishState> {
     _buttonDisabled = true;
     stateController = TextEditingController();
     statusController = Get.find<StatusController>();
+    authController = Get.find<AuthController>();
   }
   
   @override
@@ -65,10 +69,11 @@ class _PublishStateState extends State<PublishState> {
                         : () {
                             setState(() {
                               _buttonDisabled = true;
+                              User user = authController.currentUser!;
                               UserStatus status = UserStatus(
                                 picUrl: 'https://uifaces.co/our-content/donated/gPZwCbdS.jpg',
-                                name: 'Example',
-                                email: 'example@ejemplo.com',
+                                name: user.displayName!,
+                                email: user.email!,
                                 message: stateController.text,
                               );
                               statusController.sendStatus(status.toJson()).then(

@@ -7,6 +7,9 @@ abstract class AuthInterface {
   // Inicio de sesion
   Future<bool> signIn({required String email, required String password});
 
+  // Inicio de sesión con Google
+  Future<bool> signInWithGoogle();
+
   // Cerrar sesion
   Future<bool> signOut();
 

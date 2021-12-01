@@ -31,6 +31,7 @@ class AuthController extends GetxController {
 
   // Definimos el método que mostrará el valor de la variable
   bool get authenticated => _authenticated.value;
+  User? get currentUser => _currentUser.value;
 
   AuthManagement get manager => _manager;
 }

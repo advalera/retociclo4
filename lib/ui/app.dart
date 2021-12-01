@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:retociclo4/data/repositories/auth.dart';
+import 'package:retociclo4/data/repositories/google_auth.dart';
 import 'package:retociclo4/domain/repositories/auth_interface.dart';
 import 'package:retociclo4/domain/use_cases/auth_management.dart';
 import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
@@ -135,7 +136,8 @@ _firebaseStateInit() {
     AuthController authController = Get.find<AuthController>();
     // Setting manager
     authController.authManagement = AuthManagement(
-      auth: Auth()
+      auth: Auth(),
+      googleAuth: GoogleAuth()
     );
     // Watching auth state changes
     AuthInterface.authStream.listen(
