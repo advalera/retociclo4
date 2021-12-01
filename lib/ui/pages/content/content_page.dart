@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/ui/pages/content/chats/chats_screen.dart';
 import 'package:retociclo4/ui/pages/content/location/location_screen.dart';
 import 'package:retociclo4/ui/pages/content/public_offers/public_offers_screen.dart';
 import 'package:retociclo4/ui/pages/content/states/states_screen.dart';
@@ -35,6 +36,7 @@ class _State extends State<ContentPage> {
           _content = const LocationScreen();
           break;
         case 4:
+          _content = const ChatPage();
           break;
         default:
           _content = const StatesScreen();

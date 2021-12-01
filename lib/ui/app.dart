@@ -6,6 +6,7 @@ import 'package:retociclo4/data/repositories/google_auth.dart';
 import 'package:retociclo4/domain/repositories/auth_interface.dart';
 import 'package:retociclo4/domain/use_cases/auth_management.dart';
 import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/chats_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
 import 'package:retociclo4/ui/pages/authentication/auth_page.dart';
@@ -143,6 +144,7 @@ _firebaseStateInit() {
     AuthInterface.authStream.listen(
       (user) => authController.currentUser = user,
     );
+    Get.put(ChatController());
   }
 
 }
