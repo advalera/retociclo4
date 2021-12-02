@@ -29,8 +29,6 @@ class _AppState extends State<App> {
   // Este widget es la raíz de su aplicación.
   @override
   Widget build(BuildContext context) {
-    // Llamamos el método que inicializa el estado
-    _stateManagementInit();
     return FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
@@ -46,6 +44,8 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
+          // Llamamos el método que inicializa el estado
+         _stateManagementInit();
           _firebaseStateInit();
           return GetMaterialApp(
             title: 'Red Egresados MinTIC',

@@ -17,16 +17,20 @@ class StatesScreen extends StatefulWidget {
 }
 
 class _State extends State<StatesScreen> {
-  late ConnectivityController connectivityController;
-  late StatusController statusController;
-  late AuthController authController;
+  final ConnectivityController connectivityController = Get.find<ConnectivityController>();
+  final StatusController statusController = Get.find<StatusController>();
+  final AuthController authController = Get.find<AuthController>();
 
   @override
   void initState() {
     super.initState();
-    authController = Get.find<AuthController>();
-    connectivityController = Get.find<ConnectivityController>();
-    statusController = Get.find<StatusController>();
+    statusController.suscribeUpdates();
+  }
+
+  @override
+  void dispose() {
+    statusController.unsuscribeUpdates();
+    super.dispose();
   }
 
   @override
@@ -56,9 +60,9 @@ class _State extends State<StatesScreen> {
         Expanded(
           child: Obx( () {
             return ListView.builder(
-              itemCount: statusController.userStatus.length,
+              itemCount: statusController.entries.length,
               itemBuilder: (context, index) {
-                UserStatus status = statusController.userStatus[index];
+                UserStatus status = statusController.entries[index];
                 User user = authController.currentUser!;
                 return StateCard(
                   title: status.name,
