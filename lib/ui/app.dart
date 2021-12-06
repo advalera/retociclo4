@@ -9,6 +9,8 @@ import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/chats_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/themes_controller.dart';
+import 'package:retociclo4/domain/use_cases/themes_management.dart';
 import 'package:retociclo4/ui/pages/authentication/auth_page.dart';
 import 'package:retociclo4/ui/pages/content/content_page.dart';
 import 'package:retociclo4/ui/theme/theme.dart';
@@ -77,6 +79,16 @@ class _AppState extends State<App> {
   // Creamos el método que inicializará 
 // Los manejos de estado _stateManagementInit
 void _stateManagementInit() {
+
+  // Dependency Injection
+    ThemesController uiController = Get.put(ThemesController());
+    uiController.themeManager = ThemeManager();
+
+    // Reactive
+    ever(uiController.reactiveBrightness, (bool isDarkMode) {
+      uiController.manager.changeTheme(isDarkMode: isDarkMode);
+    });
+
 
     // Inyectamos el controlador y lo nombramos authController
     AuthController authController = Get.put(AuthController());
