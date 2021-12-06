@@ -80,13 +80,13 @@ class _AppState extends State<App> {
 // Los manejos de estado _stateManagementInit
 void _stateManagementInit() {
 
-  // Dependency Injection
-    ThemesController uiController = Get.put(ThemesController());
-    uiController.themeManager = ThemeManager();
+    // Dependency Injection
+    ThemesController themesController = Get.put(ThemesController());
+    themesController.themeManager = ThemeManager();
 
     // Reactive
-    ever(uiController.reactiveBrightness, (bool isDarkMode) {
-      uiController.manager.changeTheme(isDarkMode: isDarkMode);
+    ever(themesController.reactiveBrightness, (bool isDarkMode) {
+      themesController.manager.changeTheme(isDarkMode: isDarkMode);
     });
 
 

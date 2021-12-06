@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/themes_controller.dart';
 import 'package:retociclo4/ui/pages/content/chats/chats_screen.dart';
 import 'package:retociclo4/ui/pages/content/location/location_screen.dart';
 import 'package:retociclo4/ui/pages/content/public_offers/public_offers_screen.dart';
@@ -20,6 +21,7 @@ class _State extends State<ContentPage> {
   int _selectedIndex = 0;
   Widget _content = const StatesScreen();
   final AuthController authController = Get.find<AuthController>();
+  final ThemesController controller = Get.find<ThemesController>();
 
   // NavBar action
   void _onItemTapped(int index) {
@@ -52,6 +54,7 @@ class _State extends State<ContentPage> {
       appBar: CustomAppBar(
         picUrl: 'https://uifaces.co/our-content/donated/Zh_4oc5l.jpg',
         tile: const Text("Arte en las calles"),
+        controller: controller,
         context: context,
         onSignOff: () {
           authController.authenticated = false;
