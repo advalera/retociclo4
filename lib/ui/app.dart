@@ -8,8 +8,11 @@ import 'package:retociclo4/domain/use_cases/auth_management.dart';
 import 'package:retociclo4/domain/use_cases/controllers/auth_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/chats_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/conectivity_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/location_controller.dart';
+import 'package:retociclo4/domain/use_cases/controllers/permissions_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/status_controller.dart';
 import 'package:retociclo4/domain/use_cases/controllers/themes_controller.dart';
+import 'package:retociclo4/domain/use_cases/permissions_management.dart';
 import 'package:retociclo4/domain/use_cases/themes_management.dart';
 import 'package:retociclo4/ui/pages/authentication/auth_page.dart';
 import 'package:retociclo4/ui/pages/content/content_page.dart';
@@ -88,6 +91,16 @@ void _stateManagementInit() {
     ever(themesController.reactiveBrightness, (bool isDarkMode) {
       themesController.manager.changeTheme(isDarkMode: isDarkMode);
     });
+
+    // Permisos
+
+    PermissionsController permissionsController =
+        Get.put(PermissionsController());
+    permissionsController.permissionManager = PermissionManager();
+
+    // Localización
+
+    Get.put(LocationController());
 
 
     // Inyectamos el controlador y lo nombramos authController
